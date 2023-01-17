@@ -1,28 +1,28 @@
 function biggestSmallest(array){
-    var newArray;
     var theBiggest;
     var theSmallest;
-    
-    array.forEach((element) => {
-        newArray = array;
-        newArray.splice(array.indexOf(element),1);
-        
-        // Finding the biggest number
-    
-        if(newArray.every(function isBiggest(current){
-            return current < element;
-        }) === true){
-            theBiggest = element;
+    var checkBiggest = [];
+    var checkSmallest = [];
+
+    for (x=0; x<array.length; x++){
+        for (y=0; y<array.length; y++){
+            if(array[x]<array[y]){
+                checkBiggest.push("Sorry, not the biggest.");
+            }
+            if(array[x]>array[y]){
+                checkSmallest.push("Sorry, not the smallest.");
+            }
         }
-    
-        // Finding the smallest number
-    
-        if(newArray.every(function isSmallest(current){
-            return current > element;
-        }) === true){
-            theSmallest = element;
+        if(checkBiggest.length==0){
+            theBiggest = array[x];
         }
-    });
-    
-    console.log(`The biggest number is ${theBiggest} and the smallest number is ${theSmallest} and the difference between these numbers is ${theBiggest-theSmallest}.`)
+        if(checkSmallest.length==0){
+            theSmallest = array[x];
+        }
+        checkBiggest = [];
+        checkSmallest = [];
+    }
+
+    console.log(`The biggest number is ${theBiggest} and the smallest number is ${theSmallest} and the difference between these numbers is ${theBiggest-theSmallest}.`);
 }
+
